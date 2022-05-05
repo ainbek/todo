@@ -31,6 +31,7 @@ urlpatterns = [
     path("delete-todo/<id>/", delete_todo, name="delete-todo"),
     path("fav-todo/<id>/", fav_todo,  name="fav-todo"), 
     path("unfav-todo/<id>/", unfav_todo,  name="unfav-todo"),
+    path("close-todo/<id>/", close_todo, name="close-todo"),  
 ]   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
     + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

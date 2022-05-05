@@ -34,3 +34,9 @@ def unfav_todo(request, id):
     todo.is_closed = True
     todo.save()
     return request(test)
+
+def close_todo(request, id):
+    todo = ToDo.objects.get(id=id)
+    todo.is_closed = not todo.is_closed 
+    todo.save()
+    return request(test)
