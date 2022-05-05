@@ -31,6 +31,6 @@ def fav_todo(request, id):
 
 def unfav_todo(request, id):
     todo =ToDo.objects.get(id=id)
-    todo.is_favorite = True
+    todo.is_closed = True
     todo.save()
     return request(test)
