@@ -7,7 +7,6 @@ class ToDo(models.Model):
     created_at = models.DateField(auto_now_add=True)
     is_closed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
-
 class ToMeet(models.Model):
     persone = models.CharField(max_length=70)
     phone_number = models.CharField(max_length=15)
@@ -34,5 +33,6 @@ class Goal_for_month(models.Model):
     month = models.CharField(max_length=2, choices=MONTHS_CHOICES, default='1',   )
     difficulty = models.PositiveSmallIntegerField()
     reason_for_goal = models.TextField()
+
 
 
