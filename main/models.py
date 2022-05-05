@@ -6,6 +6,7 @@ class ToDo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_closed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
+
 class ToMeet(models.Model):
     persone = models.CharField(max_length=70)
     phone_number = models.CharField(max_length=15)
@@ -13,6 +14,7 @@ class ToMeet(models.Model):
     comment = models.TextField(null=True, blank=True)
     is_closed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
+    
 class Goal_for_month(models.Model):
     MONTHS_CHOICES = [
     ('1', 'январь'),
