@@ -12,25 +12,37 @@
 <body>
     <section>
         <div class="create_container">
-          <form action="{% url 'add-tomeet' %}" method="post">
+          <form action="{% url 'add-tomeet' %}" method="POST">
             {% csrf_token %}
-            <input class="create_input" 
+          <input 
+            class="create_input" 
             type="text" 
             placeholder="Напишите сюда новую задачу"
-            name="tomeet_text" />
+            name="tomeet_text" 
+          />
             <button class="create_button">Добавить</button>
             </form>
           </div>
             
         <div class="todo_container">
-          {% for item in  %}
-            <div class="todo_item">
+          {% for item in item_list %}
+            <div class="todo_item
+              {% if todo.is_favorite %}
+                    marked
+                {% elif todo.is_closed %}
+                    done
+                {% endif %}
+              ">
                 <div class="todo_item_header">
                 <label class="checkbox_container">
-                    <input type="checkbox"/>
+                    <input type="checkbox"
+                      {% if todo.is_closed %}
+                          checked
+                      {% endif %}
+                    />
                     <span class="checkmark"></span>
                   </label>
-                  <h4>{{ item.person }}</h4>
+                  <h4><a href="{% url 'close-todo' todo.id %}">{{ item.person }}</a></h4>
                 </div>
             <div class="todo_item_footer">
                 <p>{{ item.comment }}</p>
@@ -39,8 +51,17 @@
                 <p>{{ item.date_of_meeting }}</p>
                 </div>
                   <div class="action_buttons">
-                      <img src="{% static 'icons/unfav.png' %}"/>
-                      <img src="{% static 'icons/delete.png' %}" />
+                    {% if todo.is_favorite %}
+                    <a href="{% url 'fav-todo' todo.id %}"><img src="{% static './icons/fav.png' %}"/></a>
+                    {% elif todo.is_closed %}
+                    <a href="{% url 'unfav-todo' todo.id %}"><img src="{% static './icons/fav.png' %}"/></a>
+                    {% else %}
+                    <a href="{% url 'fav-todo' todo.id %}"><img src="{% static './icons/unfav.png' %}"/></a>
+                    
+                    {% endif %}
+                    
+                    <a href="{% url 'delete-todo' todo.id  %}"><img src="{% static './icons/delet.png' %}"/></a>
+                      
                   </div>
                 </div>
               </div>

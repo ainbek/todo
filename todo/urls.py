@@ -16,8 +16,13 @@ Including another URLconf
 #from unicodedata import name
 from django.contrib import admin
 from django.urls import path
-#from main.views import delete
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+#from main.views import delet 
 from main.views import * 
+from main.views import ToMeet
 from django.conf import settings
 from django.conf.urls.static import static 
 
@@ -27,6 +32,7 @@ urlpatterns = [
     path("", homepage, name="home" ),
     path("test/", test, name="test"),
     path("test2/", second),
+    #path("test2/", test2, name="test2"),
     path("add-todo/", add_todo, name="add-todo"), 
     path("delete-todo/<id>/", delete_todo, name="delete-todo"),
     path("fav-todo/<id>/", fav_todo,  name="fav-todo"), 
