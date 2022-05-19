@@ -18,49 +18,50 @@
             class="create_input" 
             type="text" 
             placeholder="Напишите сюда новую задачу"
+            placeholder="Напишите номер телефона"
             name="tomeet_text" 
           />
             <button class="create_button">Добавить</button>
             </form>
           </div>
             
-        <div class="todo_container">
+        <div class="tomeet_container">
           {% for item in item_list %}
-            <div class="todo_item
-              {% if todo.is_favorite %}
+            <div class="tomeet_item
+              {% if tomeet.is_favorite %}
                     marked
-                {% elif todo.is_closed %}
+                {% elif tomeet.is_closed %}
                     done
                 {% endif %}
               ">
-                <div class="todo_item_header">
+                <div class="tomeet_item_header">
                 <label class="checkbox_container">
                     <input type="checkbox"
-                      {% if todo.is_closed %}
+                      {% if tomeet.is_closed %}
                           checked
                       {% endif %}
                     />
                     <span class="checkmark"></span>
                   </label>
-                  <h4><a href="{% url 'close-todo' todo.id %}">{{ item.person }}</a></h4>
+                  <h4><a href="{% url 'close-tomeet' tomeet.id %}">{{ item.person }}</a></h4>
                 </div>
-            <div class="todo_item_footer">
+            <div class="tomeet_item_footer">
                 <p>{{ item.comment }}</p>
                 <div>
                 <p>Номер телефона - {{ item.phone_number }}</p>
                 <p>{{ item.date_of_meeting }}</p>
                 </div>
                   <div class="action_buttons">
-                    {% if todo.is_favorite %}
-                    <a href="{% url 'fav-todo' todo.id %}"><img src="{% static './icons/fav.png' %}"/></a>
+                    {% if tomeet.is_favorite %}
+                    <a href="{% url 'fav-tomeet' tomeet.id %}"><img src="{% static './icons/fav.png' %}"/></a>
                     {% elif todo.is_closed %}
-                    <a href="{% url 'unfav-todo' todo.id %}"><img src="{% static './icons/fav.png' %}"/></a>
+                    <a href="{% url 'unfav-tomeet' tomeet.id %}"><img src="{% static './icons/fav.png' %}"/></a>
                     {% else %}
-                    <a href="{% url 'fav-todo' todo.id %}"><img src="{% static './icons/unfav.png' %}"/></a>
+                    <a href="{% url 'fav-tomeet' tomeet.id %}"><img src="{% static './icons/unfav.png' %}"/></a>
                     
                     {% endif %}
                     
-                    <a href="{% url 'delete-todo' todo.id  %}"><img src="{% static './icons/delet.png' %}"/></a>
+                    <a href="{% url 'delete-tomeet' tomeet.id  %}"><img src="{% static './icons/delet.png' %}"/></a>
                       
                   </div>
                 </div>
